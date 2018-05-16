@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget id="lahrerladen_recommendation_list" class="IFlair\LahrerladenHomeRecommendation\Block\RecommendationList">
+		<label translate="true">Lahrerladen Recommedation List</label>
+        <description>Empfehlungen der Woche display on homepage</description>
+		<parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Products to Display</label>
+                <value>4</value>
+            </parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="Magento_CatalogWidget::product/widget/content/grid.phtml" selected="true">
+                        <label translate="true">Products Grid Template</label>
+                    </option>
+                    <option name="recommendation_list" value="IFlair_LahrerladenHomeRecommendation::recommendationlist.phtml">
+                        <label translate="true">Recommendation List Template</label>
+                    </option>
+                </options>
+            </parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+			<parameter name="condition" xsi:type="conditions" visible="true" required="true" sort_order="10"
+                       class="Magento\CatalogWidget\Block\Product\Widget\Conditions">
+                <label translate="true">Conditions</label>
+            </parameter>
+		</parameters>
+		<containers>
+            <container name="content">
+                <template name="grid" value="default" />
+                <template name="recommendation-list" value="recommendation_list" />
+            </container>
+            <container name="content.top">
+                <template name="grid" value="default" />
+            </container>
+        </containers>
+	</widget>
+</widgets>
